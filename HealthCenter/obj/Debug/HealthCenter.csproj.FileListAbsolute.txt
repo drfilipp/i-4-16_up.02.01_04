@@ -1,0 +1,15 @@
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\bin\Debug\HealthCenter.exe.config
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\bin\Debug\HealthCenter.exe
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\bin\Debug\HealthCenter.pdb
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.csprojResolveAssemblyReference.cache
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\MainWindow.g.cs
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\App.g.cs
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter_MarkupCompile.cache
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter_MarkupCompile.lref
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\MainWindow.baml
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.g.resources
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.Properties.Resources.resources
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.csproj.GenerateResource.Cache
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.csproj.CoreCompileInputs.cache
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.exe
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.pdb
