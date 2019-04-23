@@ -13,3 +13,5 @@ C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.cspr
 C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.csproj.CoreCompileInputs.cache
 C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.exe
 C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.pdb
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\Tables.g.cs
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\Tables.baml

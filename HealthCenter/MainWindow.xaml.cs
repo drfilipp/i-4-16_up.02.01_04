@@ -28,7 +28,17 @@ namespace HealthCenter
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(bd.Authorization(LoginAuth.Text, PasswordAuth.Password).ToString());
+            int temp;
+            if ((temp = bd.Authorization(LoginAuth.Text, PasswordAuth.Password)) != -1)
+                showTables(temp);
+            else MessageBox.Show("Аккаунт не существует!");
+        }
+
+        private void showTables(int temp)
+        {
+            Tables tables = new Tables((byte)temp, bd, this);
+            this.Hide();
+            tables.Show();
         }
 
         private void LoginAuth_TextChanged(object sender, TextChangedEventArgs e)
