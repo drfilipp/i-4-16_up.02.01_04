@@ -38,7 +38,7 @@
         </TextBox>
         <PasswordBox HorizontalAlignment="Left" Margin="30,125,0,0" VerticalAlignment="Top" Width="120" Name="PasswordAuth"/>
         <Button Content="Войти" HorizontalAlignment="Left" Margin="30,175,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="Button_Click"/>
-        <Frame Content="Регистрация" HorizontalAlignment="Left" Height="220" Margin="23,35,0,0" VerticalAlignment="Top" Width="130" Grid.Column="1"/>
+        <Frame Content="Регистрация" HorizontalAlignment="Left" Height="260" Margin="23,35,0,0" VerticalAlignment="Top" Width="135" Grid.Column="1"/>
         <TextBox Name="LoginReg" HorizontalAlignment="Left" Height="23" Margin="23,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="LoginAuth_TextChanged" Grid.Column="1">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
@@ -65,8 +65,8 @@
         </TextBox>
 
         <PasswordBox Name="PasswordReg" HorizontalAlignment="Left" Margin="23,125,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        
-        <Button Content="Регистрация" HorizontalAlignment="Left" Margin="23,255,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="Reg_Click" Grid.Column="1"/>
+
+        <Button Content="Регистрация" HorizontalAlignment="Left" Margin="23,250,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="Reg_Click" Grid.Column="1"/>
         <TextBox Name="NumAb" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="23,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">

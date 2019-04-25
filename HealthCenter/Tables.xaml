@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:HealthCenter"
         mc:Ignorable="d"
         Title="Tables" Height="720" Width="1080"
-        Closed="Window_Closed">
+        Closed="Window_Closed"
+        Loaded="Window_Loaded">
     <Grid>
         <TabControl >
             <TabItem Header="Личный кабинет">
@@ -28,6 +29,46 @@
             <TabItem Header="Поставщик" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="DGProvider" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Аккаунты" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DGAccounts" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Медкарты" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DGMedcard" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Номера абонементов" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DGNumAb" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Таблица ролей" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DGRole" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Специальности" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DGSpecial" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Время работы" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DGTimeWorl" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Посещения" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DGVisit" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Заключения" Margin="-2,-2,73,0">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DGZac" />
                 </Grid>
             </TabItem>
         </TabControl>

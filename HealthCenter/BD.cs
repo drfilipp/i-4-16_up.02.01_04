@@ -11,7 +11,7 @@ namespace HealthCenter
         /// <summary>
         /// Экземляр класса SQLConnnection, позволяющая обращаться к базе данных. 
         /// </summary>
-        private SqlConnection sql = new SqlConnection(string.Format("Data Source = {0}; Initial Catalog = {1}; Persist Security Info = {2}; integrated security = {3}", "Home", "HealthCenter", "True", "True"));
+        public SqlConnection sql = new SqlConnection(string.Format("Data Source = {0}; Initial Catalog = {1}; Persist Security Info = {2}; integrated security = {3}", "Home", "HealthCenter", "True", "True"));
         /// <summary>
         /// Коллекция всех таблиц, удобна в использовании.
         /// </summary>
@@ -32,25 +32,36 @@ namespace HealthCenter
             Preparation
         }
 
+        public enum Views
+        {
+            Specialist,
+            Preparation,
+            Provider,
+            Visit,
+            NumberAbonement,
+            Medcard,
+            TimeWork,
+            Role,
+            Auth,
+            Special,
+            ZakObSuccesHealth
+        }
 
         /// <summary>
         /// Коллекция, в которой хранятся все команды (запросы).
         /// </summary>
-        static List<string> commands = new List<string>()
-    {"select * from SpecialistView()",
-        "select * from PreparationView()",
-        " select * from [dbo].Chitat_treb join [dbo].[Cotrud] on [dbo].[Chitat_treb].[Cotrud_id] = [dbo].[Cotrud].[id_Cotrud] " +
-        "join [dbo].[Num_Client] on [dbo].[Chitat_treb].[Num_Client_id] = [dbo].[Num_Client].[id_Num_Client] " +
-        "join [dbo].[Book] on [dbo].[Chitat_treb].[Book_id] = [dbo].[Book].[id_Book]",
-        "select * from [dbo].[client]",
-        "select id_Cotrud as 'Номер', Familia as 'Фамилия', [Name] as 'Имя', Otchectvo as 'Отчество' from [dbo].[Cotrud]",
-        "select id_Cpes as 'Номер', Spesializ as 'Специальность' from [dbo].[Cpes]",
-        " select * from [dbo].[Num_Bibl] join [dbo].[Num_Lisen] on " +
-        "[dbo].[Num_Bibl].[Lisen_Num_id] = [dbo].[Num_Lisen].[id_Num_Lisen] " +
-        "join [dbo].[Bibl] on [dbo].[Num_Bibl].[Bibl_id] = [dbo].[Bibl].[id_Bibl]",
-        "select id_Num_Lisen as 'Номер', Num_Lisen as 'Номер лицензии', Num_sclad as 'Номер склада' from [dbo].[Num_Lisen]",
-        " select * from [dbo].[Out_Book] join [dbo].[Num_Bibl] " +
-        "on [dbo].[Out_Book].[Bibl_Num_id] = [dbo].[Num_Bibl].[id_Num_Bibl]"
+        static public List<string> commandsView = new List<string>()
+    {"select IdSpecialist as 'Номер', FirstName as 'Имя', Surname as 'Фамилия', Otch as 'Отчество', Birthday as 'День рождения', Number_passport as 'Номер паспорта', Serial_passport as 'Серия паспорта', Special as 'Специальность' from Specialist join Special on Special.IdSpecial = Specialist.IdSpecial ",
+        "select IdPreparation as 'Номер', Name_Preparation as 'Наименование', Recipe_Preparation as 'Рецепт' from dbo.Preparation ",
+        "select IdProvider as 'Номер', [Provider] as 'Поставщик' from [Provider]",
+        "select Visit.IdVisit as 'Номер', Visit.Date_Visit as 'Дата', Visit.Time_Visit as 'Время', NumberAbonement.FirstName as 'Имя', NumberAbonement.Surname as 'Фамилия', NumberAbonement.Otch as 'Отчество', SpecialsView.Специальность as 'Врач' from Visit join NumberAbonement on Visit.IdNumberAbonement = NumberAbonement.IdNumberAbonement join Auth on Auth.IdNumberAbonement = NumberAbonement.IdNumberAbonement join SpecialsView on SpecialsView.Номер = Auth.IdSpecialist",
+        "select IdNumberAbonement as 'Номер', FirstName as 'Имя', Surname as 'Фамилия', Otch as 'Отчество', Birthday as 'День рождения', Number_passport as 'Номер паспорта', Serial_passport as 'Серия паспорта' from NumberAbonement",
+        "select IdMedcard as 'Номер', Number_medcard as 'Номер медкарты', Date_insert as 'Дата получения'from Medcard ",
+        "select IdTimeWork as 'Номер', Start_work as 'Начало работы', End_work as 'Фамилия', IdSpecialist as 'Номер специалиста' from TimeWork ",
+        "select IdRole as 'Номер', [Role] as 'Роль' from Role_List ",
+        "select IdAuth as 'Номер', [Login] as 'Логин', [Password] as 'Пароль', IdRole as 'Номер роли', IdSpecialist as 'Номер специалиста', IdNumberAbonement as 'Номер абонемента' from Auth",
+        "select IdSpecial as 'Номер', Special as 'Специальность' from dbo.[Special]",
+        "select IdZakObSuccesHealth as 'Номер', Number_zak as 'Номер заключения', IdVisit as 'Номер посещения', IdTimeWork as 'Номер времени работы', IdMedcard as 'Номер медкарты' from Zakobsucceshealth"
     };
         static List<string> commandsInsert = new List<string>()
     {
@@ -82,7 +93,7 @@ namespace HealthCenter
         public DataTable GetFilledTable(byte index)
         {
             DataTable tempDT = new DataTable();
-            tempDT.Load((SqlDataReader)new SqlCommand(commands[index], sql).ExecuteReader());
+            tempDT.Load((SqlDataReader)new SqlCommand(commandsView[index], sql).ExecuteReader());
             return tempDT;
         }
 
@@ -113,7 +124,7 @@ namespace HealthCenter
         {
             DataTable tempDT = new DataTable();
             sql.Open();
-            string com = commands[index] + " where ";
+            string com = commandsView[index] + " where ";
             for (byte i = 0; i < inputs.Length; i++) com += string.Format(" {0} like '%{1}%'", '{' + i.ToString() + '}', likeString) + ((i < inputs.Length - 1) ? " or" : string.Empty);
             tempDT.Load((SqlDataReader)new SqlCommand(string.Format(com, inputs), sql).ExecuteReader());
             sql.Close();
