@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace HealthCenter
 {
@@ -11,19 +13,23 @@ namespace HealthCenter
         /// <summary>
         /// Экземляр класса SQLConnnection, позволяющая обращаться к базе данных. 
         /// </summary>
+        
         public SqlConnection sql = new SqlConnection(string.Format("Data Source = {0}; Initial Catalog = {1}; Persist Security Info = {2}; integrated security = {3}", "Home", "HealthCenter", "True", "True"));
         /// <summary>
         /// Коллекция всех таблиц, удобна в использовании.
         /// </summary>
-       
+
         public enum RoleID
         {
             Admin = 1, Specialist, Client
         }
 
-        public BD()
+        public BD(string[] str)
         {
-            sql.Open();
+            if (str != null)
+                sql = new SqlConnection("Data Source = Home; Initial Catalog = HealthCenter;" +
+" Persist Security Info = true; User ID = "+str[0]+"; Password = \"" +str[1] +"\"");
+        sql.Open();
         }
 
         public enum Tables
@@ -45,6 +51,15 @@ namespace HealthCenter
             Auth,
             Special,
             ZakObSuccesHealth
+        }
+        
+        public string GetHash(string input)
+        {
+            using (var md5 = MD5.Create())
+            {
+                var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(input + "Roma"));
+                return Convert.ToBase64String(hash);
+            }
         }
 
         /// <summary>
@@ -158,7 +173,7 @@ namespace HealthCenter
             {
                 SqlCommand command = new SqlCommand("select [dbo].[Authorization](@Login,@Password)", sql);
                 command.Parameters.Add(new SqlParameter() { ParameterName = "@Login", Value = Login });
-                command.Parameters.Add(new SqlParameter() { ParameterName = "@Password", Value = Password });
+                command.Parameters.Add(new SqlParameter() { ParameterName = "@Password", Value = GetHash(Password) });
                 return int.Parse(command.ExecuteScalar().ToString());
             }
             catch { return -1; }
@@ -173,7 +188,7 @@ namespace HealthCenter
         public byte Registration(string Login, string Password, byte Role_Id = (byte)RoleID.Client, string idNumberAbonement = "null", string idSpesialist = "null")
         {
             SqlCommand command = new SqlCommand(
-                string.Format("exec [dbo].[Registration] {0}, {1}, {2}, {3}, {4}", Login, Password, Role_Id,
+                string.Format("exec [dbo].[Registration] '{0}', '{1}', {2}, {3}, {4}", Login, GetHash(Password), Role_Id,
                 idNumberAbonement.Equals(String.Empty) ? "null" : idNumberAbonement, idSpesialist.Equals(string.Empty) ? "null" : idSpesialist), sql);
             return byte.Parse(command.ExecuteScalar().ToString());
         }

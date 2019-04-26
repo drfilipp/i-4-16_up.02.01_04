@@ -20,10 +20,12 @@ namespace HealthCenter
     /// </summary>
     public partial class MainWindow : Window
     {
-        BD bd = new BD();
-        public MainWindow()
+        BD bd;
+
+        public MainWindow(string[] str = null)
         {
             InitializeComponent();
+            bd = new BD(str);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

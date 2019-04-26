@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Demo\source\repos\HealthCenter\HealthCenter\App.xaml
-2391036539
+4-153468808
 
-11-466580931
+13-1595124369
 131569487696
-MainWindow.xaml;Tables.xaml;
+Data.xaml;MainWindow.xaml;SplashScreen.xaml;Tables.xaml;
 
-True
+False
 

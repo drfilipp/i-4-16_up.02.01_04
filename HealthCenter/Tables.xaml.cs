@@ -25,7 +25,11 @@ namespace HealthCenter
             IdLabel.Content = String.Format("Уровень доступа: {0}", idRole == (byte)BD.RoleID.Admin ? "Администратор" :
                 idRole == (byte)BD.RoleID.Specialist ? "Специалист" : idRole == (byte)BD.RoleID.Client ? "Клиент" : "Неизвестно");
             DGs = new DataGrid[]{ DGSpec, DGPreparation, DGProvider, DGVisit, DGNumAb, DGMedcard, DGTimeWorl, DGRole, DGAccounts, DGSpecial, DGZac };
-            for (byte i = 0; i < DGs.Length; i++) coms[i] = new SqlCommand(BD.commandsView[i], bd.sql);
+            for (byte i = 0; i < DGs.Length; i++)
+            {
+                coms[i] = new SqlCommand(BD.commandsView[i], bd.sql);
+                //coms[i].Notification = null;
+            }
         }
 
         private void ShowTables()
@@ -33,7 +37,7 @@ namespace HealthCenter
             for (byte i = 0; i < DGs.Length; i++)
             {
                 DataTable tempdt = new DataTable();
-                tempdt.Load((SqlDataReader)new SqlCommand(BD.commandsView[i], bd.sql).ExecuteReader());
+                tempdt.Load((SqlDataReader)coms[i].ExecuteReader());
                 DGs[i].ItemsSource = tempdt.DefaultView;
             }
                     
@@ -53,21 +57,21 @@ namespace HealthCenter
         {
             Action act = () =>
             {
-                SqlDependency[] deps = new SqlDependency[11];
                 SqlDependency.Start(bd.sql.ConnectionString);
+                SqlDependency[] deps = new SqlDependency[11];
                 for (byte i = 0; i < deps.Length; i++)
                 {
                     deps[i] = new SqlDependency(coms[i]);
                     deps[i].OnChange += new OnChangeEventHandler(onDataChanget);
                 }
-                 ShowTables();
+                ShowTables();
             };
             Dispatcher.Invoke(act, System.Windows.Threading.DispatcherPriority.Background);
         }
 
         private void onDataChanget(object sender, SqlNotificationEventArgs e)
         {
-            getData();
+            if(e.Info != SqlNotificationInfo.Invalid) getData();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

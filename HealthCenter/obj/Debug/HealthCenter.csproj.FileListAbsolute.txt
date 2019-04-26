@@ -15,3 +15,7 @@ C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.exe
 C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\HealthCenter.pdb
 C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\Tables.g.cs
 C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\Tables.baml
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\SplashScreen.g.cs
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\SplashScreen.baml
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\Data.g.cs
+C:\Users\Demo\source\repos\HealthCenter\HealthCenter\obj\Debug\Data.baml
