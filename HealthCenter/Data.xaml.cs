@@ -26,7 +26,7 @@ namespace HealthCenter
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mn = new MainWindow(new string[] {TBLogin.Text, TBPassword.Text });
+            MainWindow mn = new MainWindow(new string[] {TBLogin.Text, TBPassword.Password, TBServer.Text, TBBasa.Text });
             Hide();
             mn.Show();
         }

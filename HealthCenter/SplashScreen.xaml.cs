@@ -35,11 +35,11 @@ namespace HealthCenter
             {
                 MessageBox.Show("Error", "Don't install sql server", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-                for (int i = 0; i <= 100; i += 5)
-                {
-                    Thread.Sleep(1000);
-                    bar.Value = i;
-                }
+                //for (int i = 0; i <= 100; i += 5)
+                //{
+                //    Thread.Sleep(1000);
+                //    bar.Value = i;
+                //}
                 startMenu();
         }
 

@@ -26,8 +26,8 @@ namespace HealthCenter
 
         public BD(string[] str)
         {
-            if (str != null)
-                sql = new SqlConnection("Data Source = Home; Initial Catalog = HealthCenter;" +
+            if (str[0] != String.Empty)
+                sql = new SqlConnection("Data Source = "+str[2]+"; Initial Catalog =" + str[3] +";" +
 " Persist Security Info = true; User ID = "+str[0]+"; Password = \"" +str[1] +"\"");
         sql.Open();
         }
